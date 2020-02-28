@@ -1,0 +1,278 @@
+body {
+	margin: 100px 0;
+}
+
+.edit-btns {
+	padding-top: 20px;
+}
+
+.delete-form {
+	display: inline;
+}
+
+.checked {
+	color: orange;
+}
+
+.pull-right {
+	text-align: right;
+}
+
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+.thumbnail .caption-full {
+	padding: 9px;
+}
+
+.space-between {
+	display: flex;
+	justify-content: space-between;
+	padding-bottom: 10px;
+}
+
+
+/* FORMS-------------------------------------------------------------------------------------------------- */
+
+.form-container {
+	margin: 0 auto;
+}
+
+.form-section {
+	display: block;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+.form-content {
+	width: 30%; 
+	margin: 25px auto;
+}
+
+.form-section .form-newhome{
+	width: 80%; 
+	margin: 30px auto;
+}
+
+.form-section .btn-newhome{	
+	width: 80%;
+	margin: 20px auto;
+}
+
+
+/* NAVBAR------------------------------------------------------------------------------------------------ */
+.fixed-top {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+/*	z-index: 1030;*/
+}
+
+
+/* VIEWS/DESTINATIONS/INDEX----------------------------------------------------------------------------------- */
+#index-album .index-cards {
+	display: flex;
+	flex-wrap: wrap;
+} 
+
+.card-img-top {
+	width: 100%;
+}
+
+.index-summary {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+
+/* VIEWS/DESTINATIONS/SHOW----------------------------------------------------------------------------------- */
+.tab-content {
+	padding: 0;
+}
+
+#nav-about .about-tab-heading {
+	padding: 5px 0 20px 0;
+}
+
+#nav-about .show-image {
+	width: 100%;
+	height: 100%;
+	padding-bottom: 20px;
+}
+
+#nav-about .about-summary {
+	padding: 10px 0;
+}
+
+#nav-moreinfo .container {
+	padding: auto 30px;
+}
+
+#nav-moreinfo p {
+	padding-top: 10px;
+}
+
+#nav-moreinfo hr {
+	margin: 40px auto;
+}
+
+#nav-comments .comment-add {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 5px;
+}
+
+#nav-comments .comment-row {
+	padding: 20px 0;
+}
+
+#nav-comments .comment-text {
+	display: flex;
+	text-align: justify;
+	word-wrap: break-word;
+}
+
+#nav-reviews .review-add {
+	display: flex;
+	justify-content: center;
+	padding-bottom: 20px;
+}
+
+#nav-reviews .reviews-current .review-total {
+	font-size: 1.5em;
+	padding-right: 10px;
+}
+
+#nav-reviews .review-title {
+	font-size: 1.5em;
+}
+
+#nav-reviews .review-text {
+	display: flex;
+	text-align: justify;
+	word-wrap: break-word;
+}
+
+#nav-reviews .review-row {
+	padding: 20px 0 5px 0;
+}
+
+#nav-reviews .reviews-all {
+	margin: 40px 0 30px 0;
+}
+
+
+
+/* USER PROFILE -------------------------------------------------------------------------------------*/
+
+#userProfile h1 {
+	text-align: center;
+	padding-bottom: 10px;
+	text-transform: uppercase;
+}
+
+.user-image img {
+	width: 325px;
+	height: 300px;
+	border-radius: 50%;
+	border: 7px solid rgba(0, 0, 0, 0.2);
+}
+
+.user-email {
+	padding: 20px 0 70px 0;
+	text-align: center;
+}
+
+.user-email a {
+	color: black;
+	text-decoration: none;
+}
+
+.user-email a:hover {
+	color: #696969;
+}
+
+.user-description {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-destinations-header {
+	text-align: center;
+	align-items: center;
+	background-color: #D3D3D3;
+	width: 100%;
+	margin-left: 0;
+}
+
+.user-destinations-header h3 {
+	color: white;
+	font-size: 4em;
+	text-transform: uppercase;
+}
+
+#user-album .user-cards {
+	display: flex;
+	flex-wrap: wrap;
+	padding-top: 70px;
+}
+
+.user-btns {
+	display: flex;
+	justify-content: left;
+}
+
+.user-btns button, a {
+	margin-right: 5px;
+}
+
+.user-btn-view a {
+	color: #696969;
+	text-decoration: none;
+}
+
+.user-btn-view a:hover {
+	color: white;
+	text-decoration: none;
+}
+
+
+@media (max-width: 767px) {
+		.user-description {
+			font-size: 1em;
+			padding-bottom: 70px;
+			padding-top: 0;
+		}
+		.user-destinations-header {
+			font-size: 0.75em;
+		}
+	}
+
+	@media(min-width: 768px) {
+		.user-description {
+			font-size: 1em;
+			padding-left: 120px;
+		}
+		.user-destinations-header {
+			font-size: 1em;
+		}
+		.user-destinations {
+			padding-left: 0;
+		}
+	}
+
+	@media(min-width: 992px) {
+		.user-description {
+			font-size: 1.2em;
+			padding-left: 40px;
+		}
+	}

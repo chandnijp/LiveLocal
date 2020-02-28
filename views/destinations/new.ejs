@@ -1,0 +1,44 @@
+<%- include ("../partials/header") %>
+
+<div class="container form-container">	
+  <div class="row form-section">
+	<h1>Add a New Home</h1>
+	<div class="form-newhome">
+	  <form action="/destinations" method="POST">
+		<div class="row">
+		  <div class="col-md-6">
+		    <div class="form-group">
+		      <input class="form-control" type="text" placeholder="name" name="name">
+		    </div>
+		    <div class="form-group">
+		      <input class="form-control" type="text" placeholder="location" name="location">
+		    </div>
+		    <div class="form-group">
+		      <input class="form-control" type="number" placeholder="cost" name="cost" min="0" step="0.01" required>
+		    </div>
+		    <div class="form-group">
+		      <input class="form-control" type="text" placeholder="image url" name="image">
+		    </div>
+		  </div>
+		  <div class="col-md-6">
+		    <div class="form-group">
+			  <input class="form-control" type="text" placeholder="summary" name="summary">
+		    </div>
+		    <div class="form-group">
+			  <input class="form-control" type="text" placeholder="all information about your HolidayHome goes here..." name="description">
+		    </div>
+		    <div class="form-group">
+			  <input class="form-control" type="text" placeholder="information about the neighbourhood goes here..." name="neighbourhood">
+		    </div>			  
+		  </div>
+		</div>
+	    <div class="btn-newhome">
+		  <button class="btn btn-primary btn-lg btn-block">Submit</button>
+	    </div>
+	  </form>
+	  <a href="/destinations">Go Back</a>
+	</div>
+  </div>
+</div>
+
+<%- include ("../partials/footer") %>

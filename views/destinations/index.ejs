@@ -1,0 +1,44 @@
+<%- include ("../partials/header") %>
+
+<section class="container">
+  <div class="jumbotron">
+	<h1>Welcome to LiveLocal</h1>
+	<p class="lead">The best place to find a home away from home anywhere in the world!<br>Live like a local and truly immerse yourself in a new culture and environment or become a host and welcome someone into your home.</p>
+	<a class="btn btn-primary btn-lg" href="/destinations/new">Add New Home</a>
+  </div>
+</section>
+	
+<div id="index-album">
+  <div class="container">
+	<div class="row index-cards">
+	<% destinations.forEach(function(destination) { %>
+	  <div class="col-md-4 mb-4">
+		<div class="card shadow-sm">
+		  <img class="card-img-top" src="<%= destination.image %>">
+		  <div class="card-body">
+			<h5><%= destination.name %></h5>
+			<p><%= destination.location %></p>
+			<p class="index-summary"><%= destination.summary %></p>
+			<div class="space-between">
+			  <a href="/destinations/<%= destination._id %>" class="btn btn-primary">More Info</a>
+			  <p>
+				<% if (destination.rating === 0) { %>
+				<em>No reviews yet</em>
+				<% } else { %>
+				  <span class="fas fa-star checked"></span>
+				  <span class="fas fa-star <% if (destination.rating > 1.5) { %> checked <% } %>"></span>
+				  <span class="fas fa-star <% if (destination.rating > 2.5) { %> checked <% } %>"></span>
+				  <span class="fas fa-star <% if (destination.rating > 3.5) { %> checked <% } %>"></span>
+				  <span class="fas fa-star <% if (destination.rating > 4.5) { %> checked <% } %>"></span>	
+				<% } %>
+			  </p>
+			</div>
+		  </div>
+	    </div>
+      </div>
+      <% }); %>
+	</div>
+  </div>	
+</div>
+
+<%- include ("../partials/footer") %>

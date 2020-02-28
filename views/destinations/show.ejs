@@ -1,0 +1,178 @@
+<%- include ("../partials/header") %>
+
+<div class="container">
+  <nav>
+	<div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
+	  <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="true">About</a>
+	  <a class="nav-item nav-link" id="nav-moreinfo-tab" data-toggle="tab" href="#nav-moreinfo" role="tab" aria-controls="nav-moreinfo" aria-selected="false">More Info</a>
+	  <a class="nav-item nav-link" id="nav-comments-tab" data-toggle="tab" href="#nav-comments" role="tab" aria-controls="nav-comments" aria-selected="false">Comments</a>
+	  <a class="nav-item nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</a>
+	</div>
+  </nav>
+</div>
+
+<!-- ----------------------------------------------------------------------------------------------- -->
+
+<div class="container">	  
+  <div class="tab-content" id="nav-tabContent">
+	<div class="tab-pane fade show active" id="nav-about" role="tabpanel" aria-labelledby="nav-about-tab">
+	  <h2 class="about-tab-heading"><%= destination.name %></h2>
+	  <img class="show-image" src="<%= destination.image %>">
+	  <div class="space-between">
+	    <h4><%= destination.location %></h4>
+		<h4>£<%= destination.cost %>/night</h4>
+	  </div>
+	  <p class="about-summary">
+		  <%= destination.summary %>
+	  </p>
+	  <p>
+	    <em>Submitted by: <a href="/users/<%= destination.author.id %>"><%= destination.author.username %></a>, <%= moment(destination.createdAt).fromNow() %></em>
+	  </p>
+	  <div class="edit-btns">   
+		<a class="btn btn-dark" href="/destinations"><i class="fas fa-arrow-left"></i> Go back</a>
+	    <% if(currentUser && destination.author.id.equals(currentUser._id)){ %>
+		<a class="btn btn-sm btn-warning" href="/destinations/<%= destination._id %>/edit">EDIT</a>
+		<form class="delete-form" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
+		  <button class="btn btn-sm btn-danger">DELETE</button>
+		</form>
+		<% } %>
+	  </div>
+	</div>
+	
+<!-- --------------------------------------------------------------------------------------------------	 -->
+	  
+	<div class="tab-pane fade" id="nav-moreinfo" role="tabpanel" aria-labelledby="nav-moreinfo-tab">
+	  <div class="container text-center">
+		<div>
+		  <h4>Summary</h4>
+		  <p><%= destination.summary %></p>
+		</div>
+		<hr>
+		<div>
+		  <h4>Our Home</h4>
+	      <p><%= destination.description %></p>	
+		</div>
+		<hr>
+		<div>
+		  <h4>Our Neighbourhood</h4>
+	      <p><%= destination.neighbourhood %></p>			
+		</div>
+		<hr>
+	  </div>
+	  <div class="edit-btns">   
+		<a class="btn btn-dark" href="/destinations"><i class="fas fa-arrow-left"></i> Go back</a>
+	    <% if(currentUser && destination.author.id.equals(currentUser._id)){ %>
+		<a class="btn btn-sm btn-warning" href="/destinations/<%= destination._id %>/edit">EDIT</a>
+		<form class="delete-form" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
+		  <button class="btn btn-sm btn-danger">DELETE</button>
+		</form>
+		<% } %>
+	  </div>
+	</div>
+	
+<!-- --------------------------------------------------------------------------------------	   -->
+	  
+    <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
+	  <div class="comments-section">
+	    <div class="comment-add">
+		  <a class="btn btn-success btn-lg" href="/destinations/<%= destination._id %>/comments/new">Add New Comment</a>
+	    </div>
+	    <hr>
+	    <% destination.comments.forEach(function(comment){ %>
+	    <div class="row comment-row">
+		  <div class="col-md-10">
+		    <p>
+			  <strong><%= comment.author.username %></strong>	
+		    </p>
+		    <p class="comment-text">
+			  <%= comment.text %> 
+		    </p>
+		    <div class="edit-btns">
+			  <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+			  <a class="btn btn-sm btn-warning" href="/destinations/<%= destination._id %>/comments/<%= comment._id %>/edit">EDIT</a>
+			  <form class="delete-form" action="/destinations/<%= destination._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+			    <button class="btn btn-sm btn-danger">DELETE</button>
+			  </form>
+			  <% } %>
+		    </div>
+		  </div>
+		  <div class="col-md-2 text-right">
+		    <span><em><%= moment(comment.createdAt).fromNow() %></em></span>
+		  </div>
+	    </div>
+	    <hr>
+	    <% }); %>
+		<div>
+          <a class="btn btn-dark" href="/destinations/<%= destination._id %>"><i class="fas fa-arrow-left"></i> Go Back</a>
+        </div>
+	  </div>
+    </div>
+	
+<!-- --------------------------------------------------------------------------------------------------	 -->
+		
+    <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
+	  <div class="reviews-section">
+	    <div class="review-add">
+		  <a class="btn btn-primary btn-lg <% if (currentUser && destination.reviews.some(function (review) {return review.author.id.equals(currentUser._id)})) { %> disabled <% } %>" href="/destinations/<%= destination._id %>/reviews/new">Write a Review</a>
+	    </div>
+	    <div class="row">
+		  <div class="col-md-12 reviews-current text-center">
+		    <% if (destination.rating === 0) { %>
+		    <h5>
+			  <em>No reviews yet</em>
+		    </h5>
+		    <% } else { %>
+		    <p>
+			  <span class="review-total"><strong><%= destination.rating.toFixed(2) %></strong></span>
+			  <span class="fas fa-star checked"></span>
+			  <span class="fas fa-star <% if (destination.rating > 1.5) { %> checked <% } %>"></span>
+			  <span class="fas fa-star <% if (destination.rating > 2.5) { %> checked <% } %>"></span>
+			  <span class="fas fa-star <% if (destination.rating > 3.5) { %> checked <% } %>"></span>
+			  <span class="fas fa-star <% if (destination.rating > 4.5) { %> checked <% } %>"></span>
+			  <em>(total reviews: <%= destination.reviews.length %>)</em>
+		    </p>
+		  </div>
+	    </div>
+	    <hr>
+	    <% destination.reviews.slice(0, 5).forEach(function(review){ %>
+	    <div class="row review-row">
+		  <div class="col-md-10">
+		    <h4><strong><%= review.title %></strong></h4>
+		    <br>
+		    <p class="review-text">
+			  <%= review.text %>
+		    </p>
+		    <div><em>Reviewed by: </em><strong><%= review.author.username %></strong></div>
+		    <div class="edit-btns">
+			  <% if(currentUser && review.author.id.equals(currentUser._id)){ %>
+			  <a class="btn btn-sm btn-warning"
+						   href="/destinations/<%=destination._id %>/reviews/<%=review._id %>/edit">EDIT</a>
+			  <form class="delete-form" action="/destinations/<%=destination._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
+			    <button class="btn btn-sm btn-danger">DELETE</button>
+			  </form>
+			  <% } %>
+		    </div>
+		  </div>
+		  <div class="col-md-2 review-right text-right">
+		    <%- '<span class="fas fa-star checked"></span>'.repeat(review.rating) %><%- '<span class="fas fa-star"></span>'.repeat(5 - review.rating) %><br>
+		    <span><em><%= review.updatedAt.toDateString() %></em></span>
+		  </div>
+	    </div>
+	    <hr>
+	    <% }); %>
+	    <div class="reviews-all">
+		  <h5><a href="/destinations/<%= destination._id %>/reviews"><i class="fas fa-search" aria-hidden="true"></i> See all reviews</a></h5>
+		</div>
+	    <% } %>
+		<div>
+          <a class="btn btn-dark" href="/destinations/<%= destination._id %>"><i class="fas fa-arrow-left"></i> Go Back</a>
+        </div>
+	  </div>
+    </div>
+	
+<!-- --------------------------------------------------------------------------------------	   -->
+	
+  </div>
+</div>
+
+<%- include ("../partials/footer") %>

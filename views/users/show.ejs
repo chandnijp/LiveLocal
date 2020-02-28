@@ -1,0 +1,57 @@
+<%- include ("../partials/header") %>
+
+<div class="container" id="userProfile">
+  <div class="row">
+	<div class="col-md-4 user-profile">
+	  <h1><%= user.firstName + " " + user.lastName %></h1>
+	  <div class="user-image text-center">
+		  <img src="<%= user.avatar %>" alt="user profile image">	
+	  </div>
+	  <div class="user-email">
+		  <a href="mailto:<%= user.email %>">Get in touch!</a>
+	  </div>
+	</div>
+	<div class="col-md-8 user-description">
+	  <%= user.aboutMe %>
+	</div>
+  </div>
+</div>
+	
+
+<div class="row user-destinations-header">
+  <div class="col-md-12">
+    <h3><%= user.username %>'s Destinations</h3>
+  </div>
+</div>
+
+<div id="user-album">
+  <div class="container user-destinations">
+    <div class="row user-cards">
+    <% destinations.forEach(function(destination) { %>
+	  <div class="col-md-4 mb-4">
+	    <div class="card shadow-sm">
+		  <img class="card-img-top" src="<%= destination.image %>">
+		  <div class="card-body">
+		    <h5><%= destination.name %></h5>
+		    <p><%= destination.location %></p>
+		    <p class="index-summary"><%= destination.summary %></p>
+		    <div class="user-btns">
+			  <button type="button" class="btn btn-sm btn-outline-secondary user-btn-view">
+			    <a href="/destinations/<%= destination.id %>">View</a>
+			  </button>
+			  <% if(currentUser && destination.author.id.equals(currentUser._id)){ %>
+			  <a class="btn btn-sm btn-warning" href="/destinations/<%= destination._id %>/edit">Edit</a>
+			  <form class="delete-form" action="/destinations/<%= destination._id %>?_method=DELETE" method="POST">
+			    <button class="btn btn-sm btn-danger">Delete</button>
+			  </form>
+			  <% } %>
+		    </div>
+		  </div>
+	    </div>
+	  </div>
+      <% }) %>
+    </div>
+  </div>
+</div>
+
+<%- include ("../partials/header") %>
