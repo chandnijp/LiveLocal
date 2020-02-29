@@ -124,22 +124,6 @@ body {
 	margin: 40px auto;
 }
 
-#nav-comments .comment-add {
-	display: flex;
-	justify-content: center;
-	padding-bottom: 5px;
-}
-
-#nav-comments .comment-row {
-	padding: 20px 0;
-}
-
-#nav-comments .comment-text {
-	display: flex;
-	text-align: justify;
-	word-wrap: break-word;
-}
-
 #nav-reviews .review-add {
 	display: flex;
 	justify-content: center;
@@ -170,9 +154,7 @@ body {
 }
 
 
-
 /* USER PROFILE -------------------------------------------------------------------------------------*/
-
 #userProfile h1 {
 	text-align: center;
 	padding-bottom: 10px;
