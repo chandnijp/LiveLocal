@@ -5,7 +5,6 @@
 	<div class="nav nav-tabs mb-4" id="nav-tab" role="tablist">
 	  <a class="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-controls="nav-about" aria-selected="true">About</a>
 	  <a class="nav-item nav-link" id="nav-moreinfo-tab" data-toggle="tab" href="#nav-moreinfo" role="tab" aria-controls="nav-moreinfo" aria-selected="false">More Info</a>
-	  <a class="nav-item nav-link" id="nav-comments-tab" data-toggle="tab" href="#nav-comments" role="tab" aria-controls="nav-comments" aria-selected="false">Comments</a>
 	  <a class="nav-item nav-link" id="nav-reviews-tab" data-toggle="tab" href="#nav-reviews" role="tab" aria-controls="nav-reviews" aria-selected="false">Reviews</a>
 	</div>
   </nav>
@@ -69,44 +68,6 @@
 		<% } %>
 	  </div>
 	</div>
-	
-<!-- --------------------------------------------------------------------------------------	   -->
-	  
-    <div class="tab-pane fade" id="nav-comments" role="tabpanel" aria-labelledby="nav-comments-tab">
-	  <div class="comments-section">
-	    <div class="comment-add">
-		  <a class="btn btn-success btn-lg" href="/destinations/<%= destination._id %>/comments/new">Add New Comment</a>
-	    </div>
-	    <hr>
-	    <% destination.comments.forEach(function(comment){ %>
-	    <div class="row comment-row">
-		  <div class="col-md-10">
-		    <p>
-			  <strong><%= comment.author.username %></strong>	
-		    </p>
-		    <p class="comment-text">
-			  <%= comment.text %> 
-		    </p>
-		    <div class="edit-btns">
-			  <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
-			  <a class="btn btn-sm btn-warning" href="/destinations/<%= destination._id %>/comments/<%= comment._id %>/edit">EDIT</a>
-			  <form class="delete-form" action="/destinations/<%= destination._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-			    <button class="btn btn-sm btn-danger">DELETE</button>
-			  </form>
-			  <% } %>
-		    </div>
-		  </div>
-		  <div class="col-md-2 text-right">
-		    <span><em><%= moment(comment.createdAt).fromNow() %></em></span>
-		  </div>
-	    </div>
-	    <hr>
-	    <% }); %>
-		<div>
-          <a class="btn btn-dark" href="/destinations/<%= destination._id %>"><i class="fas fa-arrow-left"></i> Go Back</a>
-        </div>
-	  </div>
-    </div>
 	
 <!-- --------------------------------------------------------------------------------------------------	 -->
 		

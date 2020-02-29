@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var Destination = require("./models/destination");
-var Comment = require("./models/comment");
+var Review = require("./models/review");
 
 
 var data = [
@@ -37,19 +37,19 @@ function seedDB() {
 				} else {
 					console.log("added a destination");
 					//create a comment on each destination
-					Comment.create(
+					Review.create(
 						{
 							text: "This place is great but I wish there was internet",
 							author: "Homer"
-						}, function(err, comment){
+						}, function(err, review){
 							if(err){
 								console.log(err);
 							} else {
-								destination.comments.push(comment);
+								destination.reviews.push(review);
 								
 destination.save();
 								
-console.log("Created a new comment");
+console.log("Created a new review");
 							}
 						});
 				}
@@ -58,4 +58,4 @@ console.log("Created a new comment");
 	});
 }
 	
-	module.exports = seedDB;
+module.exports = seedDB;

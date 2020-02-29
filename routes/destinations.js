@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router()
 var Destination = require("../models/destination");
-var Comment = require("../models/comment");
 var Review = require("../models/review");
 //dont have to specify index.js as automatically looks for a file called index.js which the mw folder has
 var middleware = require("../middleware");
@@ -61,7 +60,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res){
 //SHOW - shows more info about one destination
 router.get("/:id", function(req, res){
 	//find the destination with provided ID
-	Destination.findById(req.params.id).populate("comments").populate({
+	Destination.findById(req.params.id).populate("reviews").populate({
 		path: "reviews",
 		options: {sort: {createdAt: -1}}
 	}).exec(function(err, foundDestination){
@@ -110,22 +109,15 @@ router.delete("/:id", middleware.checkDestinationOwnership, function(req, res){
 			res.redirect("/destinations");
 		} else {
 			//deletes all comments associated with the destination
-			Comment.remove({"_id": {$in: destination.comments}}, function(err){
+			Review.remove({"_id": {$in: destination.reviews}}, function(err){
 				if(err){
 					console.log(err);
 					return res.redirect("/destinations");
 				}
-				//deletes all reviews associated with the destination
-				Review.remove({"_id": {$in: destination.reviews}}, function(err){
-					if(err){
-						console.log(err);
-						return res.redirect("/destinations");
-					}
-					//delete the destination
-					destination.remove();
-					req.flash("success", "Destination deleted successfully!");
-					req.redirect("/destinations");
-				});
+				//delete the destination
+				destination.remove();
+				req.flash("success", "Destination deleted successfully!");
+				req.redirect("/destinations");
 			});
 		}
 	});

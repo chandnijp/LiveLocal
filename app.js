@@ -7,15 +7,14 @@ var express 		= require("express"),
 	LocalStrategy 	= require("passport-local"),
 	methodOverride 	= require("method-override"),
 	Destination 	= require("./models/destination"),
-	Comment 		= require("./models/comment"),
+	Review	 		= require("./models/review"),
 	User			= require("./models/user"),
 	seedDB			= require("./seeds");
 
 
 
 //REQUIRING ROUTES
-var commentRoutes	    = require("./routes/comments"),
-	reviewRoutes 		= require("./routes/reviews"),
+var reviewRoutes 		= require("./routes/reviews"),
 	destinationRoutes	= require("./routes/destinations"),
 	indexRoutes 		= require("./routes/index");
 
@@ -68,7 +67,6 @@ app.use(function(req, res, next){
 //USE 3 ROUTE FILES
 app.use("/", indexRoutes);
 app.use("/destinations", destinationRoutes);
-app.use("/destinations/:id/comments", commentRoutes);
 app.use("/destinations/:id/reviews", reviewRoutes);
 
 

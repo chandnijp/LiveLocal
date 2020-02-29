@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var Comment = require("./comment");
 var Review = require("./review");
 
 
@@ -20,12 +19,6 @@ var destinationSchema = new mongoose.Schema({
 		},
 		username: String
 	},
-	comments:[
-		{
-			type: mongoose.Schema.Types.ObjectId,
-			ref: "Comment"
-		}
-	],
 	reviews: [
 		{
 			type: mongoose.Schema.Types.ObjectId,
