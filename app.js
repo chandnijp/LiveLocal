@@ -21,7 +21,8 @@ var reviewRoutes 		= require("./routes/reviews"),
 	
 
 //CONNECT TO DB
-mongoose.connect("mongodb://localhost:27017/travel_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+// mongoose.connect("mongodb://localhost:27017/travel_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb+srv://chandnijp:<password>@cluster0-uy3sp.mongodb.net/LiveLocal?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 
 
 
