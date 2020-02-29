@@ -4,8 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-	"start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": "Chandni Patel",
   "license": "ISC",
@@ -18,6 +17,7 @@
     "method-override": "^3.0.0",
     "moment": "^2.24.0",
     "mongoose": "^5.8.2",
+    "nodemon": "^2.0.2",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^6.0.1"
