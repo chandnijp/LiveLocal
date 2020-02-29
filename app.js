@@ -21,7 +21,7 @@ var reviewRoutes 		= require("./routes/reviews"),
 	
 
 //CONNECT TO DB
-var url = process.env.DATABASEURL || "mongodb://localhost:27017/travel_app";
+var url = process.env.DATABASE_URL || "mongodb://localhost:27017/travel_app";
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 // mongoose.connect("mongodb://localhost:27017/travel_app", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
 // mongoose.connect("mongodb+srv://chandnijp:<password>@cluster0-uy3sp.mongodb.net/LiveLocal?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
@@ -77,5 +77,3 @@ app.use("/destinations/:id/reviews", reviewRoutes);
 app.listen(3000, function(){
 	console.log("Server has started!");
 });
-
-app.listen(process.env.PORT, process.env.IP);
